@@ -1,23 +1,37 @@
 # Tip.cc-Autocollect
-A tip.cc autocollect bot made by ME, no skid or anything. Paid version available at https://shop.quartzwarrior.xyz/product/unlimited-crypto-tipcc
+###### A tip.cc autocollect bot using Python.
 
+### Requirements
+- ###### Python 3.6 or later (You may download Python from here https://www.python.org/downloads),
+- ###### Python Packages (Listed in requirements.txt),
+- ###### Active Discord account.
 
-## This is the exact script from the [premium version](https://shop.quartzwarrior.xyz/product/unlimited-crypto-tipcc)
-- Removed Math drops
-- Removed Trivia drops
+### Installation Instructions
+- ###### Install [Python](https://www.python.org/downloads/)
+- ###### Clone this repository,
+```
+git clone https://github.com/theDebonair/Tip.cc-Autocollect.git
+cd Tip.cc-Autocollect
+```
 
-## Why?
-I posted this as people in the [Self-bots subreddit](https://www.reddit.com/r/Discord_selfbots/) thought I was fake and I skidded, but no I didn't.
+- ###### Install all the required Python packages.
+```
+pip install -r requirements.txt
+```
 
-## Installation Guide
-1. Install [Python](https://www.python.org/downloads/)
-2. Open your terminal in the folder downloaded
-3. Installing dependencies:
-  - Linux: python3 -m pip install -U -r requirements.txt
-  - Windows: py -m pip install -U -r requirements.txt
-4. Run, follow instructions, and profit!
-  - Linux: python3 tipcc_autocollect.py
-  - Windows: py tipcc_autocollect.py
-***
-##### Tip.cc-Autocollect was made for educational purposes only, the developers and contributors do not take any responsibility for your Discord account.
-***
+### Running Instructions
+- ###### After all the dependencies have been downloaded and installed, simply run "tipcc_autocollect.py".
+```
+python tipcc_autocollect.py
+```
+
+### Attention
+- ###### Tip.cc-Autocollect was made for educational purposes only, the developers and contributors do not take any responsibility for your Discord account.
+
+### PS
+- ###### This project is forked from [QuartzWarrior's Tip.cc-Autocollect Repo](https://github.com/QuartzWarrior/Tip.cc-Autocollect). All thanks to him.
+- ###### Feel free to make suggestions, report bugs on this project's [discussions](https://github.com/theDebonair/Tip.cc-Autocollect/discussions) tab.
+
+### Want to buy me a lambo?
+- ###### WAX: xau3c.c.wam
+- ###### BNB, ETH: 0xaA98aAE37F98ce7d657f4472e14891266c13e321
