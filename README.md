@@ -25,7 +25,9 @@ python tipcc_autocollect.py
 ```
 
 ### Attention
+***
 ###### Tip.cc-Autocollect was made for educational purposes only, the developers and contributors do not take any responsibility for your "Discord Account".
+***
 
 ### PS
 - ###### This project is forked from [QuartzWarrior's Tip.cc-Autocollect Repo](https://github.com/QuartzWarrior/Tip.cc-Autocollect). All thanks to him.
