@@ -1,7 +1,6 @@
 import asyncio
 import json
 import random
-import aiohttp
 import art
 import discord
 import os
@@ -161,3 +160,6 @@ except discord.LoginFailure:
     config["TOKEN"] = ""
     with open("config.json", 'w') as f:
         json.dump(config, f)
+
+except:
+    print("\nRestarting...")
