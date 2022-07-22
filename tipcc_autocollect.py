@@ -50,10 +50,14 @@ if config["channel_id"] == 0:
 
 @client.event
 async def on_ready():
-    global channel
-    channel = client.get_channel(config["channel_id"])
-    print(f"Logged in as {client.user.name}#{client.user.discriminator} ({client.user.id})")
-    tipping.start()
+    try:
+        global channel
+        channel = client.get_channel(config["channel_id"])
+        print(f"Logged in as {client.user.name}#{client.user.discriminator} ({client.user.id})")
+        tipping.start()
+
+    except:
+        return
 
 @tasks.loop(minutes = 10.0)
 async def tipping():
@@ -89,8 +93,12 @@ async def tipping():
 
 @tipping.before_loop
 async def before_tipping():
-    print("\nWaiting for bot to be ready before tipping starts...\n\n")
-    await client.wait_until_ready()
+    try:
+        print("\nWaiting for bot to be ready before tipping starts...\n\n")
+        await client.wait_until_ready()
+        
+    except:
+        return
 
 @client.event
 async def on_message(message):
