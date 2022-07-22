@@ -29,23 +29,23 @@ with open("config.json", 'r') as f:
 client = discord.Client()
 
 if config["TOKEN"] == "":
-    config["TOKEN"] = input("Enter your discord token\n\n-> ")
+    config["TOKEN"] = input("\nEnter your discord token\n-> ")
     with open("config.json", 'w') as f:
         json.dump(config, f)
 
 if config["FIRST"] == "True":
-    config["CPM"] = int(input("Enter your CPM (Characters Per Minute).\nThis is to make the Phrase Drop Collector more legit.\nA decent CPM would be 310. (Remember, the higher the faster)\n\n-> "))
+    config["CPM"] = int(input("\nEnter your CPM (Characters Per Minute).\nThis is to make the Phrase Drop Collector more legit.\nA decent CPM would be 310. (Remember, the higher the faster)\n-> "))
     config["FIRST"] = "False"
     with open("config.json", 'w') as f:
         json.dump(config, f)
         
 if config["id"] == 0:
-    config["id"] = int(input("Enter your Main Account's ID.\n\nIf you are sniping from your Main Account, put your Main Account's ID.\n\n-> "))
+    config["id"] = int(input("\nEnter your Main Account's ID.\n\nIf you are sniping from your Main Account, put your Main Account's ID.\n-> "))
     with open("config.json", 'w') as f:
         json.dump(config, f)
         
 if config["channel_id"] == 0:
-    config["channel_id"] = int(input("Enter the Channel ID where you want your Alt Account to tip your Main Account.\n(Remember, the tip.cc bot has to be in the server with this channel.)\n\nIf None, send \"1\".\n\n-> "))
+    config["channel_id"] = int(input("\nEnter the Channel ID where you want your Alt Account to tip your Main Account.\n(Remember, the tip.cc bot has to be in the server with this channel.)\nIf None, send \"1\".\n-> "))
     with open("config.json", 'w') as f:
         json.dump(config, f)
 
@@ -86,7 +86,7 @@ async def tipping():
 
 @tipping.before_loop
 async def before_tipping():
-    print("Waiting for bot to be ready before tipping starts...")
+    print("\nWaiting for bot to be ready before tipping starts...\n\n")
     await client.wait_until_ready()
 
 @client.event
@@ -107,10 +107,11 @@ async def on_message(message):
                     button = comp[0]
 
                     if "Enter airdrop" in button.label:
-                        sleep(random.uniform(0.75, 1.75))
+                        sleep(random.uniform(1.0, 2.25))
                         await button.click()
                         air_count += 1
-                        print(f"Entered Airdrop for {embed.description.split('**')[1]} {embed.description.split('**')[2].split(')')[0].replace(' (','')}.\nTotal Airdrop(s) entered: {air_count}")
+                        print(f"\nEntered Airdrop for {embed.description.split('**')[1]} {embed.description.split('**')[2].split(')')[0].replace(' (','')}.\nTotal Airdrop(s) entered: {air_count}\nSleeping...\n\n")
+                        sleep(random.uniform(1.0, 60.0))
                 
                 elif "Phrase drop!" in embed.title:
                     content = embed.description.replace("\n", "").replace("**", "")
@@ -128,7 +129,8 @@ async def on_message(message):
                             await asyncio.sleep(length)
                         await message.channel.send(content)
                         phase_count += 1
-                        print(f"Entered Phrasedrop for {embed.description.split('**')[1]} {embed.description.split('**')[2].split(')')[0].replace(' (','')}.\nTotal Phasedrop(s) entered: {phase_count}")
+                        print(f"\nEntered Phrasedrop for {embed.description.split('**')[1]} {embed.description.split('**')[2].split(')')[0].replace(' (','')}.\nTotal Phasedrop(s) entered: {phase_count}\nSleeping...\n\n")
+                        sleep(random.uniform(1.0, 60.0))
                 
                 elif "appeared" in embed.title:
                     comp = message.components
@@ -136,10 +138,11 @@ async def on_message(message):
                     button = comp[0]
 
                     if "envelope" in button.label:
-                        sleep(random.uniform(0.25, 1.25))
+                        sleep(random.uniform(0.25, 1.0))
                         await button.click()
                         env_count += 1
-                        print(f"Claimed Envelope for {embed.description.split('**')[1]} {embed.description.split('**')[2].split(')')[0].replace(' (','')}.\nTotal Envelope(s) entered: {env_count}")
+                        print(f"\nClaimed Envelope for {embed.description.split('**')[1]} {embed.description.split('**')[2].split(')')[0].replace(' (','')}.\nTotal Envelope(s) entered: {env_count}\nSleeping...\n\n")
+                        sleep(random.uniform(1.0, 60.0))
             
             except AttributeError:
                 pass
@@ -154,7 +157,7 @@ try:
     client.run(config["TOKEN"])
 
 except discord.LoginFailure:
-    print("Invalid token, restarting the program...")
+    print("\nInvalid token, restarting the program...\n\n")
     config["TOKEN"] = ""
     with open("config.json", 'w') as f:
         json.dump(config, f)
