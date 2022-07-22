@@ -57,31 +57,35 @@ async def on_ready():
 
 @tasks.loop(minutes = 10.0)
 async def tipping():
-    await channel.send("$bals top")
-    answer = await client.wait_for('message', check=lambda message: message.author.id == 617037497574359050 and message.embeds)
-    pages = int(answer.embeds[0].author.name.split('/')[1].replace(')',''))
-    page = 1
+    try:
+        await channel.send("$bals top")
+        answer = await client.wait_for('message', check=lambda message: message.author.id == 617037497574359050 and message.embeds)
+        pages = int(answer.embeds[0].author.name.split('/')[1].replace(')',''))
+        page = 1
+        
+        for page in range(pages):
+            button = answer.components[0].children[1]
 
-    for page in range(pages):
-        button = answer.components[0].children[1]
+            for crypto in answer.embeds[0].fields:
+                if "Estimated total" in crypto.name:
+                    pass
 
-        for crypto in answer.embeds[0].fields:
-            if "Estimated total" in crypto.name:
-                pass
+                else:
+                    content = f"$tip <@{config['id']}> {crypto.value.split('**')[1].replace(',','')}"
+                    async with channel.typing():
+                        await asyncio.sleep(len(content) / config["CPM"] * 60)
+                    await channel.send(content)
 
-            else:
-                content = f"$tip <@{config['id']}> {crypto.value.split('**')[1].replace(',','')}"
-                async with channel.typing():
-                    await asyncio.sleep(len(content) / config["CPM"] * 60)
-                await channel.send(content)
+            if button.disabled:
+                await answer.components[0].children[2].click()
+                return
 
-        if button.disabled:
-            await answer.components[0].children[2].click()
-            return
-
-        await button.click()
-        await asyncio.sleep(1)
-        answer = await channel.fetch_message(answer.id)
+            await button.click()
+            await asyncio.sleep(1)
+            answer = await channel.fetch_message(answer.id)
+        
+    except:
+        return
 
 @tipping.before_loop
 async def before_tipping():
