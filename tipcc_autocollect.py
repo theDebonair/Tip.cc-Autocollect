@@ -146,10 +146,13 @@ async def on_message(message):
             except AttributeError:
                 pass
             
+            except discord.NotFound:
+                return
+            
             except discord.HTTPException:
                 return
             
-            except discord.NotFound:
+            except:
                 return
 
 try:
